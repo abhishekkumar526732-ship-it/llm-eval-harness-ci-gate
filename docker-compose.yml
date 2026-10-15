@@ -38,8 +38,8 @@ services:
     environment:
       DATABASE_URL: postgresql://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres}@postgres:5432/${POSTGRES_DB:-ai_evaluation}
       GOOGLE_API_KEY: ${GOOGLE_API_KEY}
-      APP_LLM_MODEL: ${APP_LLM_MODEL:-gemini-1.5-flash}
-      EVALUATOR_LLM_MODEL: ${EVALUATOR_LLM_MODEL:-gemini-1.5-pro}
+      APP_LLM_MODEL: ${APP_LLM_MODEL:-gemini-3.8-flash}
+      EVALUATOR_LLM_MODEL: ${EVALUATOR_LLM_MODEL:-gemini-3.8-pro}
       EVALUATION_OFFLINE_MODE: ${EVALUATION_OFFLINE_MODE:-false}
       ENVIRONMENT: ${ENVIRONMENT:-development}
       LOG_LEVEL: ${LOG_LEVEL:-INFO}
@@ -68,8 +68,8 @@ services:
     environment:
       DATABASE_URL: postgresql://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres}@postgres:5432/${POSTGRES_DB:-ai_evaluation}
       GOOGLE_API_KEY: ${GOOGLE_API_KEY}
-      APP_LLM_MODEL: ${APP_LLM_MODEL:-gemini-1.5-flash}
-      EVALUATOR_LLM_MODEL: ${EVALUATOR_LLM_MODEL:-gemini-1.5-pro}
+      APP_LLM_MODEL: ${APP_LLM_MODEL:-gemini-3.8-flash}
+      EVALUATOR_LLM_MODEL: ${EVALUATOR_LLM_MODEL:-gemini-3.8-pro}
       EVALUATION_OFFLINE_MODE: ${EVALUATION_OFFLINE_MODE:-false}
       ENVIRONMENT: ${ENVIRONMENT:-development}
     volumes:

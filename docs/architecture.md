@@ -84,8 +84,8 @@ To prevent evaluator bias and conflicting generation settings, the platform sepa
 
 | Role | Default Model | Responsibility |
 | :--- | :--- | :--- |
-| **Application Model** | `gemini-1.5-flash` | Generates candidate answers grounded in context. |
-| **Evaluator Judge Model** | `gemini-1.5-pro` | Independently scores Faithfulness, Relevancy, and Precision. |
+| **Application Model** | `gemini-3.8-flash` | Generates candidate answers grounded in context. |
+| **Evaluator Judge Model** | `gemini-3.8-pro` | Independently scores Faithfulness, Relevancy, and Precision. |
 | **Offline Mock Model** | `MockChatModel` | Deterministic simulation for local dev, offline tests, and CI. |
 
 ### 2.3 Evaluation & Quality Gate Pipeline

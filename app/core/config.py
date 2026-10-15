@@ -40,7 +40,7 @@ class Settings(BaseSettings):
 
     # Target Application Model Settings
     APP_LLM_MODEL: str = Field(
-        default="gemini-1.5-flash",
+        default="gemini-3.8-flash",
         description="LangChain Gemini model for application answers",
     )
     APP_LLM_TEMPERATURE: float = Field(default=0.0, ge=0.0, le=1.0)
@@ -49,7 +49,7 @@ class Settings(BaseSettings):
 
     # Evaluator Judge Model Settings (Configured independently from target model)
     EVALUATOR_LLM_MODEL: str = Field(
-        default="gemini-1.5-pro",
+        default="gemini-3.8-pro",
         description="Model identifier for Ragas/LLM judge evaluator",
     )
     EVALUATOR_LLM_TEMPERATURE: float = Field(default=0.0, ge=0.0, le=1.0)

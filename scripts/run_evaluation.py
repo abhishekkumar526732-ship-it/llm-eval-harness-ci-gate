@@ -34,12 +34,12 @@ def main():
     parser.add_argument(
         "--app-model",
         default=None,
-        help="Target application model override (e.g. gemini-1.5-flash)",
+        help="Target application model override (e.g. gemini-3.8-flash)",
     )
     parser.add_argument(
         "--evaluator-model",
         default=None,
-        help="Evaluator judge model override (e.g. gemini-1.5-pro)",
+        help="Evaluator judge model override (e.g. gemini-3.8-pro)",
     )
     parser.add_argument(
         "--offline",
