@@ -16,6 +16,7 @@ docs/
 ├── evaluation_and_metrics.md       # Ragas 0.2.x, Deterministic Assertions, Quality Gates
 ├── dataset_guide.md                # Dataset Schema, 5 Test Categories & Authoring Guide
 ├── deployment_and_ci.md            # Docker, PostgreSQL, Alembic & GitHub Actions CI/CD
+├── aws_ec2_deployment.md           # Step-by-Step AWS EC2 Production Deployment
 └── runbook_and_troubleshooting.md  # Operator Runbook, Triage Guide & Failure Handling
 ```
 
@@ -30,6 +31,7 @@ docs/
 | **[Metrics & Quality Gates](file:///d:/harnesss/docs/evaluation_and_metrics.md)** | Explanation of Faithfulness, Answer Relevancy, Context Precision, deterministic assertions, and `thresholds.yaml` policy. |
 | **[Dataset & Authoring Guide](file:///d:/harnesss/docs/dataset_guide.md)** | JSONL format, Pydantic schema validation, writing normal, edge, unanswerable, adversarial, and citation test cases. |
 | **[Deployment & CI/CD](file:///d:/harnesss/docs/deployment_and_ci.md)** | Multi-stage Dockerfile, Docker Compose stack, database migrations with Alembic, GitHub Actions CI workflow, and LangSmith. |
+| **[AWS EC2 Deployment Guide](file:///d:/harnesss/docs/aws_ec2_deployment.md)** | Complete guide to launching on AWS EC2 with Docker Compose, Nginx reverse proxy, and free SSL via Certbot. |
 | **[Runbook & Troubleshooting](file:///d:/harnesss/docs/runbook_and_troubleshooting.md)** | How to triage CI failures, resolve metric drops, update locked baselines, and debug offline/online execution issues. |
 
 ---

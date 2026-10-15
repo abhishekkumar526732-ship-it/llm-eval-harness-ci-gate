@@ -127,30 +127,80 @@ uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
 
 ---
 
-## 🐳 Docker & Docker Compose
+## 🐳 Running with Docker & Docker Compose (Step-by-Step)
 
-Run the entire platform (PostgreSQL + FastAPI + Evaluator) in isolated containers:
+You can run the entire platform (PostgreSQL 16, FastAPI REST API, and Evaluation Runner) inside isolated Docker containers without installing Python or PostgreSQL locally.
 
+### Step 1: Prepare Environment Configuration
+Copy `.env.example` to create your local `.env` and set your credentials:
 ```bash
-# Start PostgreSQL database and FastAPI server
-docker compose up -d
-
-# Run evaluation runner inside Docker
-docker compose run --rm evaluator python -m scripts.run_evaluation --dataset-version v1
-
-# Stop all containers
-docker compose down
+cp .env.example .env
+# Edit .env and set your GOOGLE_API_KEY
 ```
 
-Interactive API documentation will be available at: **`http://localhost:8000/docs`**
+### Step 2: Build & Start All Containers
+Launch the PostgreSQL database and FastAPI server in the background:
+```bash
+docker compose up -d --build
+```
+
+### Step 3: Verify Container Health
+Check that all services are healthy and running:
+```bash
+docker compose ps
+```
+Both `ai_eval_postgres` and `ai_eval_api` should show `Up (healthy)`.
+
+### Step 4: Apply Database Migrations Inside Docker
+Initialize the database tables via Alembic inside the container:
+```bash
+docker compose run --rm api alembic upgrade head
+```
+
+### Step 5: Test the API & Access Swagger UI
+- **Health Check:**
+  ```bash
+  curl http://localhost:8000/health
+  ```
+- **Interactive API Documentation:** Open your browser at **`http://localhost:8000/docs`**
+
+### Step 6: Run Evaluations Inside Docker
+Execute the evaluation suite and enforce quality gates against your dataset:
+```bash
+# Bootstrap baseline inside Docker
+docker compose run --rm evaluator python -m scripts.initialize_baseline --dataset-version v1 --offline
+
+# Run candidate evaluation runner inside Docker
+docker compose run --rm evaluator python -m scripts.run_evaluation --dataset-version v1 --offline
+```
+*(All generated Markdown and JSON reports will be saved to your host `./reports/` directory).*
+
+### Step 7: View Live Container Logs
+```bash
+# Stream API server logs
+docker compose logs -f api
+
+# Stream PostgreSQL logs
+docker compose logs -f postgres
+```
+
+### Step 8: Stop Containers
+```bash
+# Stop containers (keeps PostgreSQL database data intact)
+docker compose down
+
+# Stop containers AND delete database data volume (clean reset)
+docker compose down -v
+```
 
 ---
 
 ## 📖 Deep-Dive Documentation
 
-For detailed guides, architectural deep-dives, and operational runbooks, explore the [docs/](file:///d:/harnesss/docs/) directory:
+For detailed guides, architectural deep-dives, AWS production deployment, and operational runbooks, explore the [docs/](file:///d:/harnesss/docs/) directory:
 
 - 📚 **[Documentation Home](file:///d:/harnesss/docs/index.md)** — Quick navigation and guide directory.
+- ☁️ **[AWS EC2 Deployment Guide](file:///d:/harnesss/docs/aws_ec2_deployment.md)** — Step-by-step guide to deploying on AWS EC2 with Docker, Nginx, and free SSL via Certbot.
 - 🏗️ **[System Architecture](file:///d:/harnesss/docs/architecture.md)** — Detailed diagrams, dual-model configuration, and database ER model.
 - 🔌 **[REST API Reference](file:///d:/harnesss/docs/api_reference.md)** — Endpoints, request/response models, and `curl` examples.
 - 📊 **[Metrics & Quality Gates](file:///d:/harnesss/docs/evaluation_and_metrics.md)** — Ragas 0.2.x mechanics, deterministic assertions, and `thresholds.yaml`.
