@@ -12,15 +12,15 @@ The platform includes a multi-stage Docker build producing a secure, lightweight
 
 ```mermaid
 graph TD
-    subgraph Docker Network: eval_network
-        PG[postgres:16-alpine (Healthcheck: pg_isready)]
-        API[api: FastAPI Server (Port 8000)]
-        RUNNER[evaluator: CLI Runner Profile]
+    subgraph Docker_Network ["Docker Network: eval_network"]
+        PG["postgres:16-alpine (Healthcheck: pg_isready)"]
+        API["api: FastAPI Server (Port 8000)"]
+        RUNNER["evaluator: CLI Runner Profile"]
     end
 
-    subgraph Host Storage
-        VOL[(postgres_data: Persistent Volume)]
-        REPORTS[./reports: Mounted Directory]
+    subgraph Host_Storage ["Host Storage"]
+        VOL[("postgres_data: Persistent Volume")]
+        REPORTS["./reports: Mounted Directory"]
     end
 
     PG --- VOL

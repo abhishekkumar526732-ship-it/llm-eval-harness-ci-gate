@@ -8,34 +8,34 @@ The **AI Evaluation & Regression Testing Platform** is structured into decoupled
 
 ```mermaid
 graph TD
-    subgraph Client & CI Interfaces
-        GH[GitHub Actions CI/CD]
-        DEV[Developer CLI Scripts]
-        WEB[FastAPI Swagger UI / Clients]
+    subgraph Client_Interfaces ["Client & CI Interfaces"]
+        GH["GitHub Actions CI/CD"]
+        DEV["Developer CLI Scripts"]
+        WEB["FastAPI Swagger UI / Clients"]
     end
 
-    subgraph Core Platform Services
-        API[FastAPI Application (app.main)]
-        EVAL[Evaluation Engine (app.evaluation.evaluator)]
-        RAG[LangChain RAG Chain (app.chains.rag_chain)]
-        LOADER[Dataset Loader (app.evaluation.dataset_loader)]
-        DET[Deterministic Checker (app.evaluation.deterministic_checks)]
-        RAGAS[Ragas 0.2.x Engine (app.evaluation.ragas_metrics)]
-        COMP[Baseline Comparator (app.evaluation.baseline)]
-        GATE[Quality Gate Policy (app.evaluation.quality_gate)]
-        REP[Report Generator (app.evaluation.report_generator)]
+    subgraph Core_Services ["Core Platform Services"]
+        API["FastAPI Application (app.main)"]
+        EVAL["Evaluation Engine (app.evaluation.evaluator)"]
+        RAG["LangChain RAG Chain (app.chains.rag_chain)"]
+        LOADER["Dataset Loader (app.evaluation.dataset_loader)"]
+        DET["Deterministic Checker (app.evaluation.deterministic_checks)"]
+        RAGAS["Ragas 0.2.x Engine (app.evaluation.ragas_metrics)"]
+        COMP["Baseline Comparator (app.evaluation.baseline)"]
+        GATE["Quality Gate Policy (app.evaluation.quality_gate)"]
+        REP["Report Generator (app.evaluation.report_generator)"]
     end
 
-    subgraph LLM Model Orchestration
-        APP_LLM[Target Application Model (Gemini 1.5 Flash / Mock)]
-        JUDGE_LLM[Evaluator Judge Model (Gemini 1.5 Pro / Mock)]
+    subgraph LLM_Orchestration ["LLM Model Orchestration"]
+        APP_LLM["Target Application Model (Gemini 3.8 Flash / Mock)"]
+        JUDGE_LLM["Evaluator Judge Model (Gemini 3.8 Pro / Mock)"]
     end
 
-    subgraph Persistence & File Storage
-        PG[(PostgreSQL Database / SQLite Fallback)]
-        FS_DATA[Versioned JSONL Datasets (datasets/v1/)]
-        FS_REPORTS[Markdown & JSON Reports (reports/)]
-        FS_LOCK[Baseline Lock (evaluation/baseline_lock.json)]
+    subgraph Storage_Layer ["Persistence & File Storage"]
+        PG[("PostgreSQL Database / SQLite Fallback")]
+        FS_DATA["Versioned JSONL Datasets (datasets/v1/)"]
+        FS_REPORTS["Markdown & JSON Reports (reports/)"]
+        FS_LOCK["Baseline Lock (evaluation/baseline_lock.json)"]
     end
 
     GH --> DEV

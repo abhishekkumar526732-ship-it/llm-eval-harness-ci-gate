@@ -10,17 +10,17 @@ The platform employs a **hybrid evaluation strategy** combining deterministic as
 
 ```mermaid
 graph LR
-    subgraph Input Data
-        Q[User Question]
-        CTX[Context Passages]
-        ANS[Model Generated Answer]
-        GT[Expected Reference Answer]
+    subgraph Input_Data ["Input Data"]
+        Q["User Question"]
+        CTX["Context Passages"]
+        ANS["Model Generated Answer"]
+        GT["Expected Reference Answer"]
     end
 
-    subgraph Evaluation Metrics
-        F[Faithfulness]
-        AR[Answer Relevancy]
-        CP[Context Precision]
+    subgraph Evaluation_Metrics ["Evaluation Metrics"]
+        F["Faithfulness"]
+        AR["Answer Relevancy"]
+        CP["Context Precision"]
     end
 
     CTX --> F

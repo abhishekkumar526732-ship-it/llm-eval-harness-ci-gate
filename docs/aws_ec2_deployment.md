@@ -8,24 +8,24 @@ This guide provides step-by-step instructions for deploying the **AI Evaluation 
 
 ```mermaid
 graph TD
-    subgraph Public Internet
-        USER[Developer / Client / GitHub Actions]
+    subgraph Public_Internet ["Public Internet"]
+        USER["Developer / Client / GitHub Actions"]
     end
 
-    subgraph AWS VPC
-        subgraph EC2 Instance (Ubuntu 24.04 LTS / t3.medium)
-            NGINX[Nginx Reverse Proxy (Port 80 / 443 with SSL)]
+    subgraph AWS_VPC ["AWS VPC"]
+        subgraph EC2_Instance ["EC2 Instance (Ubuntu 24.04 LTS / t3.medium)"]
+            NGINX["Nginx Reverse Proxy (Port 80 / 443 with SSL)"]
             
-            subgraph Docker Engine (Isolated Network)
-                API[FastAPI Container (Port 8000)]
-                PG[(PostgreSQL 16 Container)]
-                EVAL[Evaluator CLI Runner]
+            subgraph Docker_Engine ["Docker Engine (Isolated Network)"]
+                API["FastAPI Container (Port 8000)"]
+                PG[("PostgreSQL 16 Container")]
+                EVAL["Evaluator CLI Runner"]
             end
 
-            EBS[(EBS Volume 20GB gp3: Persistent DB & Logs)]
+            EBS[("EBS Volume 20GB gp3: Persistent DB & Logs")]
         end
 
-        SG[AWS Security Group: Ports 22, 80, 443]
+        SG["AWS Security Group: Ports 22, 80, 443"]
     end
 
     USER -->|HTTPS 443| SG

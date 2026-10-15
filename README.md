@@ -67,23 +67,23 @@ python -m scripts.run_evaluation --dataset-version v1 --offline
 
 ```mermaid
 graph LR
-    subgraph Developer Workflow
-        PR[Prompt / Model Change] --> CI[GitHub Actions CI]
+    subgraph Developer_Workflow ["Developer Workflow"]
+        PR["Prompt / Model Change"] --> CI["GitHub Actions CI"]
     end
 
-    subgraph Evaluation Pipeline
-        CI --> EVAL[Evaluation Engine]
-        EVAL --> RAG[LangChain RAG Chain]
-        EVAL --> DET[Deterministic Checker]
-        EVAL --> RAGAS[Ragas 0.2.x Judge]
-        EVAL --> COMP[Baseline Comparator]
+    subgraph Evaluation_Pipeline ["Evaluation Pipeline"]
+        CI --> EVAL["Evaluation Engine"]
+        EVAL --> RAG["LangChain RAG Chain"]
+        EVAL --> DET["Deterministic Checker"]
+        EVAL --> RAGAS["Ragas 0.2.x Judge"]
+        EVAL --> COMP["Baseline Comparator"]
     end
 
-    subgraph Quality Assurance
-        COMP --> GATE{Quality Gate Pass?}
-        GATE -->|Yes| PASS[✅ Exit 0: Merge Approved]
-        GATE -->|No| FAIL[❌ Exit 1: Block PR]
-        GATE --> REP[Generate Reports MD / JSON]
+    subgraph Quality_Assurance ["Quality Assurance"]
+        COMP --> GATE{"Quality Gate Pass?"}
+        GATE -->|Yes| PASS["✅ Exit 0: Merge Approved"]
+        GATE -->|No| FAIL["❌ Exit 1: Block PR"]
+        GATE --> REP["Generate Reports (MD / JSON)"]
     end
 ```
 
